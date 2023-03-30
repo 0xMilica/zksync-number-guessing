@@ -13,6 +13,10 @@
     "zksync-web3": "^0.14.3"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2",
     "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "deploy": "hardhat deploy-zksync"
   }
 }

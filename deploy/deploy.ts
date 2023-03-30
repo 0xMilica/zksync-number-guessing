@@ -2,6 +2,7 @@ import { Wallet } from "zksync-web3";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { Deployer } from "@matterlabs/hardhat-zksync-deploy";
 import dotenv from "dotenv";
+import { BigNumber } from "ethers";
 
 dotenv.config();
 
@@ -16,12 +17,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const wallet = new Wallet(WALLET_PRIVATE_KEY);
   const deployer = new Deployer(hre, wallet);
-  const artifact = await deployer.loadArtifact("Greeter");
+  const rewardTokenArtifact = await deployer.loadArtifact("RewardToken");
 
-  const greeting = "Hi there!";
 
-  const greeterContract = await deployer.deploy(artifact, [greeting]);
+  const multiplier = BigNumber.from(10).pow(18);
+  const amount = BigNumber.from(1000).mul(multiplier);
+  const constructorArguments = [amount];
+  
+  console.log(`Deploying ${rewardTokenArtifact.contractName}, with constructor arguments: ${JSON.stringify(constructorArguments)}`);
+  const rewardTokenContract = await deployer.deploy(rewardTokenArtifact, constructorArguments);
 
-  const contractAddress = greeterContract.address;
-  console.log(`${artifact.contractName} was deployed to ${contractAddress}`);
+  const contractAddress = rewardTokenContract.address;
+  console.log(`${rewardTokenArtifact.contractName} was deployed to ${contractAddress}`);
 }
