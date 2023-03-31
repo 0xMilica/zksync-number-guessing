@@ -7,6 +7,9 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { zkSyncTestnet } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import SecretKeyForm from './SecretNumForm';
+import GuessNumberForm from "./GuessNumberForm";
+import TokenBalance from "./TokenBalance";
 
 function App() {
 
@@ -30,23 +33,23 @@ function App() {
     provider
   });
 
-  return (
-    
-      
-        <WagmiConfig client={wagmiClient}>
-          <RainbowKitProvider chains={chains}>
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <b>Number Guessing game deployed on zkSync ERA</b>
-                <ConnectButton/>
-              </header>
-              <div className="body">
-                
-              </div>
-            </div>
-          </RainbowKitProvider>
-        </WagmiConfig>
+  return ( 
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <b>Number Guessing game deployed on zkSync ERA</b>
+            <ConnectButton/>
+          </header>
+          <div className="body">
+            <TokenBalance/>
+            <SecretKeyForm/>
+            <GuessNumberForm/>
+          </div>
+        </div>
+      </RainbowKitProvider>
+    </WagmiConfig>
   );
 }
 

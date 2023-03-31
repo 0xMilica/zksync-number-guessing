@@ -1,0 +1,2 @@
+export const NumberGuessingContractAddress = "0x251b578a6e95f9950Df3c44DCd54cBD5Fb67be47";
+export const RewardTokenContractAddress = "0x86ECC9B797aF1A3a6c607ea446F66Eb241eb17f7";
