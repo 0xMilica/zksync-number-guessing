@@ -17,16 +17,24 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const wallet = new Wallet(WALLET_PRIVATE_KEY);
   const deployer = new Deployer(hre, wallet);
-  const rewardTokenArtifact = await deployer.loadArtifact("RewardToken");
-
 
   const multiplier = BigNumber.from(10).pow(18);
   const amount = BigNumber.from(1000).mul(multiplier);
-  const constructorArguments = [amount];
+  const rewardTokenConstructorArguments = [amount];
   
-  console.log(`Deploying ${rewardTokenArtifact.contractName}, with constructor arguments: ${JSON.stringify(constructorArguments)}`);
-  const rewardTokenContract = await deployer.deploy(rewardTokenArtifact, constructorArguments);
+  const rewardTokenArtifact = await deployer.loadArtifact("RewardToken");
+  console.log(`Deploying ${rewardTokenArtifact.contractName}, with constructor arguments: ${JSON.stringify(rewardTokenConstructorArguments)}`);
+  const rewardTokenContract = await deployer.deploy(rewardTokenArtifact, rewardTokenConstructorArguments);
+  console.log(`${rewardTokenArtifact.contractName} was deployed to ${rewardTokenContract.address}`);
 
-  const contractAddress = rewardTokenContract.address;
-  console.log(`${rewardTokenArtifact.contractName} was deployed to ${contractAddress}`);
+  const rewardTokenAddress = rewardTokenContract.address;
+  const numberGuessingConstructorArguments = [rewardTokenAddress];
+
+  const numberGuessingArtifact = await deployer.loadArtifact("NumberGuessing");
+  console.log(`Deploying ${numberGuessingArtifact.contractName}, with constructor arguments: ${JSON.stringify(numberGuessingConstructorArguments)}`);
+  const numberGuessingContract = await deployer.deploy(numberGuessingArtifact, numberGuessingConstructorArguments);
+  console.log(`${numberGuessingArtifact.contractName} was deployed to ${numberGuessingContract.address}`);
+
+  await rewardTokenContract.transferOwnership(numberGuessingContract.address);
+  console.log("Ownership transfered to the NumberGuessing contract");
 }
