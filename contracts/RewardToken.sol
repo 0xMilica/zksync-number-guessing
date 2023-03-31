@@ -10,7 +10,7 @@ contract RewardToken is IRewardToken, ERC20, Ownable {
         _mint(msg.sender, amount);
     }
 
-    function mint(address to, uint256 amount) public override {
+    function mint(address to, uint256 amount) public override onlyOwner {
         _mint(to, amount);
     }
 }

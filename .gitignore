@@ -3,3 +3,6 @@ node_modules
 artifacts-zk
 cache-zk
 .DS_Store
+typechain-types
+artifacts
+solidity-files-cache.json

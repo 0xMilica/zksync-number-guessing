@@ -1,5 +1,6 @@
 import "@matterlabs/hardhat-zksync-deploy";
 import "@matterlabs/hardhat-zksync-solc";
+import "@nomicfoundation/hardhat-toolbox";
 
 module.exports = {
   zksolc: {
@@ -7,8 +8,6 @@ module.exports = {
     compilerSource: "binary",
     settings: {},
   },
-  defaultNetwork: "zkSyncTestnet",
-
   networks: {
     zkSyncTestnet: {
       url: "https://zksync2-testnet.zksync.dev",
