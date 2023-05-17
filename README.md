@@ -1,11 +1,10 @@
-![zkSync Era Banner](/assets/banner.png)
 # Number Guessing
-Demonstration of creating Full Stack application on zkSync ERA  
+Demonstration of creating Full Stack application on zkSync  
 Consisting of:
 1. Solidity Smart Contracts
 2. React Frontend Application
 
-# Deployments on zkSync ERA
+# Deployments on zkSync
 The Smart Contracts are deployed on zkSync's Goerli Testnet on the next addresses:
 
 - [RewardToken](https://goerli.explorer.zksync.io/address/0x86ECC9B797aF1A3a6c607ea446F66Eb241eb17f7#transactions): `0x86ECC9B797aF1A3a6c607ea446F66Eb241eb17f7`  
@@ -21,7 +20,7 @@ You'll need next software installed on your machine before starting:
 **_Steps should be followed in the given order._**
 
 ## General:
-1. Clone the repo: `git clone https://github.com/MilicaVulic/zksync-number-guessing`
+1. Clone the repo: `git clone https://github.com/0xMilica/zksync-number-guessing`
 2. Navigate to the folder: `cd zksync-number-guessing`
 
 ## Smart Contracts:
